@@ -1,8 +1,10 @@
 package slowcity.com.mapper;
 import java.util.List;
 
-import slowcity.com.entity.UserEntity;
+import org.springframework.stereotype.Service;
 
+import slowcity.com.entity.UserEntity;
+@Service
 public interface UserMapper {
 
     List<UserEntity> getAll();
