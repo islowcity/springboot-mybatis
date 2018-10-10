@@ -28,7 +28,7 @@
         FROM users
     </select>
 
-    <select id="getList" resultMap="BaseResultMap" parameterType="slowcity.com.entityVo.UserVo">
+    <select id="getList" resultMap="BaseResultMap" parameterType="slowcity.com.entity.vo.UserVo">
         select
         <include refid="Base_Column_List" />
         from users
@@ -37,7 +37,7 @@
         order by id desc
     </select>
 
-    <select id="getCount" resultType="Integer" parameterType="slowcity.com.entityVo.UserVo">
+    <select id="getCount" resultType="Integer" parameterType="slowcity.com.entity.vo.UserVo">
         select
         count(1)
         from users
@@ -63,10 +63,11 @@
     <update id="update" parameterType="slowcity.com.entity.UserEntity" >
         UPDATE
         users
-        SET
+        <trim prefix="set" suffixOverrides=",">
         <if test="userName != null">userName = #{userName},</if>
         <if test="passWord != null">passWord = #{passWord},</if>
         nick_name = #{nickName}
+        </trim>
         WHERE
         id = #{id}
     </update>

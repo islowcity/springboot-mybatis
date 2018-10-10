@@ -2,12 +2,12 @@ package slowcity.com.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import slowcity.com.entity.UserEntity;
@@ -25,22 +25,27 @@ public class UserController {
         List<UserEntity> users=userMapper.getAll();
         return users;
     }
-
-
+	/**
+	 * 
+	 * 注解风格接口测试
+	 */
+    @GetMapping(value = "/userOne/{id}")
+    public UserEntity getOneUser(@PathVariable(value = "id") Long id) {
+        return userMapper.findOne(id);
+    }
 
     @GetMapping(value = "/users/{id}")
     public UserEntity getUser(@PathVariable(value = "id") Long id) {
-        UserEntity user=userMapper.getOne(id);
-        return user;
+        return userMapper.getOne(id);
     }
 
     @PostMapping("/users")
-    public void save(UserEntity user) {
+    public void save(@RequestBody UserEntity user) {
         userMapper.insert(user);
     }
 
     @PutMapping("/users")
-    public void update(UserEntity user) {
+    public void update(@RequestBody UserEntity user) {
         userMapper.update(user);
     }
 

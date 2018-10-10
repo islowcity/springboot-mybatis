@@ -1,4 +1,4 @@
-package slowcity.com.entityVo;
+package slowcity.com.entity.vo;
 
 public class UserVo {
 
